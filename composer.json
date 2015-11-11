@@ -1,0 +1,23 @@
+{
+    "name": "mirocow/yii2-telegram-api",
+    "description": "Telegram api component for Yii2",
+    "type": "yii2-extension",
+    "keywords": ["telegram", "bot", "api", "yii", "yii2"],
+    "license": "BSD-3-Clause",
+    "homepage": "http://github.com/Mirocow/yii2-telegram-api",
+    "authors": [
+        {
+            "name": "Mirocow",
+            "email": "mr.mirocow@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "elenin/telegram-bot-api": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "mirocow\\telegramm\\api\\": "src"
+        }
+    }
+}
