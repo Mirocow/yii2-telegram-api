@@ -14,7 +14,7 @@
     "minimum-stability": "dev",
     "require": {
         "yiisoft/yii2": "*",
-        "elenin/telegram-bot-api": "*"
+        "zelenin/telegram-bot-api": "*"
     },
     "autoload": {
         "psr-4": {
