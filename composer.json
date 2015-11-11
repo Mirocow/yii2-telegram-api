@@ -11,6 +11,7 @@
             "email": "mr.mirocow@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "yiisoft/yii2": "*",
         "elenin/telegram-bot-api": "*"
