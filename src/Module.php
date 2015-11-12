@@ -10,6 +10,10 @@ class Module extends \yii\base\Module
 
     public $commands = [];
 
+    public $unknownCommand = 'mirocow\telegram\commands\UnknownCommand';
+
+    public $defaultMessage = 'mirocow\telegram\commands\DefaultMessage';
+
     public function init()
     {
         parent::init();
