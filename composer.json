@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "mirocow\\telegramm\\api\\": "src"
+            "mirocow\\telegram\\": "src"
         }
     }
 }
