@@ -1,10 +1,13 @@
 # yii2-telegram-api
 
 ``` php
-'components' => [
-    'telegram' => [
-        'class' => 'mirocow\component\Telegram',
-        'token' => 'api-telegram-token',
-    ]
-],
+'modules' => [
+			'telegram' => [
+					'class' => 'mirocow\telegram\Module',
+					'token' => 'api-telegram-token',
+					'commands' => [
+						'help' => 'app\commands\HelpCommand',
+					],
+			],
+],			
 ```

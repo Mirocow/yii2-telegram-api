@@ -10,6 +10,11 @@ use Yii;
 
 class BotController extends Controller
 {
+    public function options($actionID)
+    {
+        return ['sales-center'];
+    }
+
 	public function actionIndex()
 	{
 
