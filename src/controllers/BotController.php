@@ -10,9 +10,13 @@ use Yii;
 
 class BotController extends Controller
 {
+    public $salescenter;
+
+    public $uncknowCommand = 'mirocow\\telegram\\commands\\UnknownCommand';
+
     public function options($actionID)
     {
-        return ['sales-center'];
+        return ['salescenter'];
     }
 
 	public function actionIndex()
@@ -36,7 +40,7 @@ class BotController extends Controller
                     if(class_exists($command)){
                         $message = (new $command)->run($update);
                     } else {
-                        $message = Yii::t('app', 'Uncknow command');
+                        $message = (new $this->uncknowCommand)->run($update);
                     }
 
                 } else {
