@@ -13,6 +13,8 @@ class Module extends \yii\base\Module
     public $unknownCommand = 'mirocow\telegram\commands\UnknownCommand';
 
     public $defaultMessage = 'mirocow\telegram\commands\DefaultMessage';
+    
+    public $options = [];
 
     public function init()
     {
