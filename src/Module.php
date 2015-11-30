@@ -14,11 +14,12 @@ class Module extends \yii\base\Module
 
     public $defaultMessage = 'mirocow\telegram\commands\DefaultMessage';
     
-    public $options = [];
+    public $options = ['token'];
 
     public function init()
     {
         parent::init();
 
     }
+
 }

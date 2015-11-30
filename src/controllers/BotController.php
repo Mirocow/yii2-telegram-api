@@ -18,48 +18,69 @@ class BotController extends Controller
         	return $this->module->options;
 	}
 
+    public function __get($name)
+    {
+        if(in_array($name, $this->module->options)){
+            return isset($this->module->options[$name])? $this->module->options[$name]: false;
+        }
+    }
+
+	public function __set($name, $value)
+	{
+		$this->module->options[$name] = $value;
+	}
+
 	public function actionIndex()
 	{
+			if(isset(Yii::$app->controller->module->options['token'])) {
+				$token = Yii::$app->controller->module->options['token'];
+			} else {
+				$token = $this->module->token;
+			}
 
-	        $client = new Api($this->module->token);
+	        $client = new Api($token);
 	
 	        $daemon = new Daemon($client);
 	
 	        $daemon
 	            ->onUpdate(function (Update $update) use ($client) {
-	
-	                if(isset($update->message->text) && substr($update->message->text, 0,1) == '/' && $command = str_replace('/','', $update->message->text)) {
-	
-	                    if(isset($this->module->commands[$command])) {
-	                        $command = $this->module->commands[$command];
-	                    } else {
-	                        $command = 'mirocow\telegram\commands\\' . ucfirst($command) . 'Command';
-	                    }
-	
-	                    if(class_exists($command)){
-	                        $message = (new $command)->run($update);
-	                    } else {
-	                        if(class_exists($this->module->unknownCommand)) {
-	                            $message = (new $this->module->unknownCommand)->run($update);
-	                        } else {
-	                            $message = (new UnknownCommand)->run($update);
-	                        }
-	                    }
-	
-	                } else {
-	                        if(class_exists($this->module->defaultMessage)) {
-	                            $message = (new $this->module->defaultMessage)->run($update);
-	                        } else {
-	                            $message = (new DefaultMessage)->run($update);
-	                        }
-	                }
-	
-	                if($message) {
-	                    $response = $client->sendMessage([
-	                        'chat_id' => $update->message->chat->id,
-	                        'text' => $message
-	                    ]);
-	                }
+
+					try {
+						if (isset($update->message->text) && substr($update->message->text, 0, 1) == '/' && $command = str_replace('/', '', $update->message->text)) {
+
+							if (isset($this->module->commands[$command])) {
+								$command = $this->module->commands[$command];
+							} else {
+								$command = 'mirocow\telegram\commands\\' . ucfirst($command) . 'Command';
+							}
+
+							if (class_exists($command)) {
+								$message = (new $command)->run($update);
+							} else {
+								if (class_exists($this->module->unknownCommand)) {
+									$message = (new $this->module->unknownCommand)->run($update);
+								} else {
+									$message = (new UnknownCommand)->run($update);
+								}
+							}
+
+						} else {
+							if (class_exists($this->module->defaultMessage)) {
+								$message = (new $this->module->defaultMessage)->run($update);
+							} else {
+								$message = (new DefaultMessage)->run($update);
+							}
+						}
+
+						if ($message) {
+							$response = $client->sendMessage([
+									'chat_id' => $update->message->chat->id,
+									'text' => $message
+							]);
+						}
+					} catch(\Exception $e){
+						print_r($e);
+					}
 	
 	            });
 	
