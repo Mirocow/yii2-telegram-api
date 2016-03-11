@@ -21,7 +21,7 @@ class BotController extends Controller
     public function __get($name)
     {
         if(in_array($name, $this->module->options)){
-            return isset($this->module->options[$name])? $this->module->options[$name]: false;
+            return isset($this->module->options[$name])? $this->module->options[$name]: '';
         }
     }
 

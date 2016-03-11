@@ -8,19 +8,19 @@ use Zelenin\Telegram\Bot\Client as TelegramClient;
 class Client
 {
 
-    public function sendMessage($chatId, $message)
+    public function sendMessage($token, $chatId, $message)
     {
-        $telegram = \Yii::$app->getModule('telegram');
-
-        $client = new Api($telegram->token);
+        $client = new Api($token);
 
         try {
             return $client->sendMessage([
                 'chat_id' => $chatId,
                 'text' => $message
             ]);
-        } catch (\Zelenin\Telegram\Bot\NotOkException $e) {
-            echo $e->getMessage();
+        } catch (\Zelenin\Telegram\Bot\Exception\NotOkException $e) {
+
+            return $e->getMessage();
+
         }
 
     }

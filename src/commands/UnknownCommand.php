@@ -10,7 +10,7 @@ class UnknownCommand implements CommandInterface {
 
         return <<<HELP
 
-        Unknown coomand
+        Unknown command
 
 HELP;
 
