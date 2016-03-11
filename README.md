@@ -1,4 +1,4 @@
-# Telegram BOT program
+# Telegram BOT client/sever
 
 This extension helps to create a bot for Telegrams applications.
 It is a complete solution to run background tasks allowing to accept, process and respond to the message from the Telegram.
