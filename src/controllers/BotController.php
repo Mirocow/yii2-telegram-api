@@ -4,8 +4,8 @@ namespace mirocow\telegram\controllers;
 
 use mirocow\telegram\commands\UnknownCommand;
 use mirocow\telegram\commands\DefaultMessage;
-use \Zelenin\Telegram\Bot\Api;
-use \Zelenin\Telegram\Bot\Daemon\Daemon;
+use Zelenin\Telegram\Bot\ApiFactory;
+use \Zelenin\Telegram\Bot\Daemon\NaiveDaemon;
 use \Zelenin\Telegram\Bot\Type\Update;
 use yii\console\Controller;
 use Yii;
@@ -38,9 +38,9 @@ class BotController extends Controller
 				$token = $this->module->token;
 			}
 
-	        $client = new Api($token);
+	        $client = ApiFactory::create($token);
 	
-	        $daemon = new Daemon($client);
+	        $daemon = new NaiveDaemon($client);
 	
 	        $daemon
 	            ->onUpdate(function (Update $update) use ($client) {
