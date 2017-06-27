@@ -73,10 +73,14 @@ class BotController extends Controller
 						}
 
 						if ($message) {
-							$response = $client->sendMessage([
+							if (is_array($message)) {
+								$response = $client->sendMessage($message);
+							} else {
+								$response = $client->sendMessage([
 									'chat_id' => $update->message->chat->id,
 									'text' => $message
-							]);
+								]);
+							}
 						}
 					} catch(\Exception $e){
 						print_r($e);
