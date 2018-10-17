@@ -21,4 +21,4 @@ After install you can start bot with
 nohup php ./yii telegram/bot/index
 ```
 
-And after you can run /help in the chat of the Teleram cliet.
+And after you can run /help in the chat of the Teleram client.
